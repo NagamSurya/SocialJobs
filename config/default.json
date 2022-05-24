@@ -1,3 +1,4 @@
 {
-    "mongoURI": "mongodb+srv://Surya:Surya@socialjobs.tzycy.mongodb.net/?retryWrites=true&w=majority"
+    "mongoURI": "mongodb+srv://Surya:Surya@socialjobs.tzycy.mongodb.net/?retryWrites=true&w=majority",
+    "jwtSecret":"secToken"
 }
