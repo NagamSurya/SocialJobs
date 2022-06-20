@@ -12,7 +12,7 @@ const Landing = ({ isAuthenticated }) => {
     <section className="landing">
       <div className="dark-overlay">
         <div className="landing-inner">
-          <h1 className="x-large">Land Your Dream Job.</h1>
+          <h1 className="x-large">Welcome to SocioJobs</h1>
           <p className="lead">
           Create and develop your profile, share posts and build your network with other developers worldwide.
           </p>

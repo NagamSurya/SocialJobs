@@ -23,11 +23,8 @@ const AddExperience = ({ addExperience }) => {
 
   return (
     <section className="container">
-      <h1 className="large text-primary">Add An Experience</h1>
-      <p className="lead">
-        <i className="fas fa-code-branch" /> Add any developer/programming
-        positions that you have had in the past
-      </p>
+      <h1 className="large text-primary">Add your Experience</h1>
+      
       <small>* = required field</small>
       <form
         className="form"
@@ -103,10 +100,8 @@ const AddExperience = ({ addExperience }) => {
             onChange={onChange}
           />
         </div>
-        <input type="submit" className="btn btn-primary my-1" />
-        <Link className="btn btn-light my-1" to="/dashboard">
-          Go Back
-        </Link>
+        <input type="submit" value="Save" className="btn btn-primary my-1" />
+  
       </form>
     </section>
   );

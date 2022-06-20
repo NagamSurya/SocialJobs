@@ -9,11 +9,12 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phoneNumber:'',
     password: '',
     password2: ''
   });
 
-  const { name, email, password, password2 } = formData;
+  const { name, email, phoneNumber,password, password2 } = formData;
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -21,9 +22,9 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     if (password !== password2) {
-      setAlert('Passwords do not match', 'danger');
+      setAlert('Passwords do not match',"danger");
     } else {
-      register({ name, email, password });
+      register({ name, email,phoneNumber, password });
     }
   };
 
@@ -55,10 +56,17 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
             value={email}
             onChange={onChange}
           />
-          <small className="form-text">
-            This site uses Gravatar so if you want a profile image, use a
-            Gravatar email
-          </small>
+          
+        </div>
+        <div className="form-group">
+          <input
+            type="tel"
+            placeholder="Phone number"
+            name="phoneNumber"
+            value={phoneNumber}
+            onChange={onChange}
+          />
+          
         </div>
         <div className="form-group">
           <input
@@ -81,7 +89,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
         <input type="submit" className="btn btn-primary" value="Register" />
       </form>
       <p className="my-1">
-        Already have an account? <Link to="/login">Sign In</Link>
+        Already have an account? <Link to="/login">Log In</Link>
       </p>
     </section>
   );

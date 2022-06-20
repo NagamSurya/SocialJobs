@@ -26,9 +26,9 @@ const Login = ({ login, isAuthenticated }) => {
 
   return (
     <section className="container">
-      <h1 className="large text-primary">Sign In</h1>
+      <h1 className="large text-primary">Log In</h1>
       <p className="lead">
-        <i className="fas fa-user" /> Sign Into Your Account
+        <i className="fas fa-user" /> Log Into Your Account
       </p>
       <form className="form" onSubmit={onSubmit}>
         <div className="form-group">

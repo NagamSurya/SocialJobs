@@ -25,10 +25,7 @@ const AddEducation = ({ addEducation }) => {
   return (
     <section className="container">
       <h1 className="large text-primary">Add Your Education</h1>
-      <p className="lead">
-        <i className="fas fa-code-branch" /> Add any school or bootcamp that you
-        have attended
-      </p>
+      
       <small>* = required field</small>
       <form
         className="form"
@@ -40,23 +37,32 @@ const AddEducation = ({ addEducation }) => {
         <div className="form-group">
           <input
             type="text"
-            placeholder="* School or Bootcamp"
+            placeholder="* School/College/University"
             name="school"
             value={school}
             onChange={onChange}
             required
           />
         </div>
+
+
         <div className="form-group">
-          <input
-            type="text"
-            placeholder="* Degree or Certificate"
-            name="degree"
-            value={degree}
-            onChange={onChange}
-            required
-          />
+          <select name="degree" placeholder="* Degree or Certificate" value={degree} onChange={onChange} required>
+            <option value="" disabled selected>* Degree</option>
+            <option value="10th class">10th class</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Bachelors">Bachelors</option>
+            <option value="Masters">Masters</option>
+            <option value="PHD">PHD</option>
+            <option value="Other">Other</option>
+          </select>
+          
         </div>
+
+
+
+       
+      
         <div className="form-group">
           <input
             type="text"
@@ -102,10 +108,8 @@ const AddEducation = ({ addEducation }) => {
             onChange={onChange}
           />
         </div>
-        <input type="submit" className="btn btn-primary my-1" />
-        <Link className="btn btn-light my-1" to="/dashboard">
-          Go Back
-        </Link>
+        <input type="submit" value= "Save" className="btn btn-primary my-1" />
+       
       </form>
     </section>
   );
