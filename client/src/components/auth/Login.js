@@ -36,6 +36,7 @@ const Login = ({ login, isAuthenticated }) => {
             type="email"
             placeholder="Email Address"
             name="email"
+
             value={email}
             onChange={onChange}
           />

@@ -27,6 +27,7 @@ const PostForm = ({ addPost }) => {
           required
         />
         <input type='submit'  className='btn btn-primary my-1' value='Post' />
+      
       </form>
     </div>
   );

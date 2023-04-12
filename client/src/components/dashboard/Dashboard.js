@@ -61,4 +61,5 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, { getCurrentProfile, deleteAccount })(
   Dashboard
+  
 );
