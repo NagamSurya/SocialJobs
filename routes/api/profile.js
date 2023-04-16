@@ -30,6 +30,7 @@ router.get('/me', auth, async (req, res) => {
     }
   });
 
+
   router.post(
     '/',
     auth,
@@ -96,7 +97,7 @@ router.get('/me', auth, async (req, res) => {
 
   router.get('/', async (req, res) => {
     try {
-      const profiles = await Profile.find().populate('user', ['name', 'avatar']);
+      const profiles = await Profile.find().populate('user', ['name', 'avatar','email']);
       res.json(profiles);
     } catch (err) {
       console.error(err.message);
@@ -112,7 +113,7 @@ router.get('/me', auth, async (req, res) => {
       try {
         const profile = await Profile.findOne({
           user: user_id
-        }).populate('user', ['name']);
+        }).populate('user', ['name','email']);
   
         if (!profile) return res.status(400).json({ msg: 'Profile not found' });
   
@@ -230,23 +231,6 @@ router.put(
     }
   );
   
-  // @route    DELETE api/profile/education/:edu_id
-  // @desc     Delete education from profile
-  // @access   Private
-  
-  router.delete('/education/:edu_id', auth, async (req, res) => {
-    try {
-      const foundProfile = await Profile.findOne({ user: req.user.id });
-      foundProfile.education = foundProfile.education.filter(
-        (edu) => edu._id.toString() !== req.params.edu_id
-      );
-      await foundProfile.save();
-      return res.status(200).json(foundProfile);
-    } catch (error) {
-      console.error(error);
-      return res.status(500).json({ msg: 'Server error' });
-    }
-  });
   // @route    PUT api/profile/education
 // @desc     Add profile education
 // @access   Private
@@ -299,6 +283,51 @@ router.delete('/education/:edu_id', auth, async (req, res) => {
 });
 
 
+router.put(
+  '/certifications',
+  auth,
+  check('certificationName', 'certificate Name is required').notEmpty(),
+  check('certificationDate', 'Date is required and needs to be in the past')
+  .notEmpty()
+  .custom((value) => {
+    const certificationDate = new Date(value);
+    const currentDate = new Date();
+    return certificationDate < currentDate;
+  }),
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    try {
+      const profile = await Profile.findOne({ user: req.user.id });
+
+      profile.certifications.unshift(req.body);
+
+      await profile.save();
+
+      res.json(profile);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server Error');
+    }
+  }
+);
+
+router.delete('/certifications/:certi_id', auth, async (req, res) => {
+  try {
+    const foundProfile = await Profile.findOne({ user: req.user.id });
+    foundProfile.certifications = foundProfile.certifications.filter(
+      (certi) => certi._id.toString() !== req.params.certi_id
+    );
+    await foundProfile.save();
+    return res.status(200).json(foundProfile);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ msg: 'Server error' });
+  }
+});
 
 
 module.exports= router;

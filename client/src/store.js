@@ -14,6 +14,7 @@ const store = createStore(
   composeWithDevTools(applyMiddleware(...middleware))
 );
 
+
 /*
   NOTE: set up a store subscription listener
   to store the users token in localStorage

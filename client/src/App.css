@@ -224,6 +224,13 @@ img {
   margin: 1.5rem 0;
 }
 
+.invalid-feedback {
+  color: #dc3545; /* set the color for the error message */
+  display: block; /* display the error message as a block element */
+  font-size: 14px; /* set the font size for the error message */
+  margin-top: 4px; /* add some margin to the top of the error message */
+}
+
 /* Overlay */
 .dark-overlay {
   background-color: rgba(0, 0, 0, 0.7);

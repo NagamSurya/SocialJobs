@@ -24,7 +24,7 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
 
   return (
     <section className="container">
-    
+    <h1 className="large text-primary">Developers</h1>
         <form  onSubmit={(e) => {
     e.preventDefault();
     getProfiles(searchQuery);
@@ -35,7 +35,7 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
     placeholder="Search "
     value={searchQuery}
     onChange={(e) => setSearchQuery(e.target.value)}
-    style={{ width: "300px" }}
+    style={{ width: "100%", height:"30px" }}
   />
   
 </form>
@@ -44,7 +44,7 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
         <Spinner />
       ) : (
         <Fragment>
-          <h1 className="large text-primary">Developers</h1>
+          <br/>
           
           <div className="profiles">
           {filteredProfiles.length > 0 ? (

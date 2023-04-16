@@ -15,15 +15,44 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
   });
 
   const { name, email, phoneNumber,password, password2 } = formData;
+  const [nameError, setNameError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [phoneError, setPhoneError] = useState("");
+  const [passError, setPassError] = useState("");
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    let flag=false;
     if (password !== password2) {
-      setAlert('Passwords do not match',"danger");
+      setPassError("Bro, the passwords don't match!");
+      flag=true
+    } 
+    else{setPassError("Bro, the passwords don't match!");}
+    if (!name) {
+      setNameError("Name cannot be empty");
+      flag=true
     } else {
+      setNameError("");
+    }
+    if (!email.includes("@")) {
+      setEmailError("Enter a valid email");
+      flag=true
+    } else {
+      setEmailError("");
+    }
+    if (phoneNumber.length !== 10) {
+      setPhoneError("Please enter a valid phone number");
+      flag=true
+    } else {
+      setPhoneError("");
+    }
+    if(flag)
+    {}
+
+    else {
       register({ name, email,phoneNumber, password });
     }
   };
@@ -47,6 +76,9 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
             value={name}
             onChange={onChange}
           />
+          {nameError && (
+      <div className="invalid-feedback">{nameError}</div>
+    )}
         </div>
         <div className="form-group">
           <input
@@ -56,7 +88,9 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
             value={email}
             onChange={onChange}
           />
-          
+           {emailError && (
+      <div className="invalid-feedback">{emailError}</div>
+    )}
         </div>
         <div className="form-group">
           <input
@@ -66,7 +100,9 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
             value={phoneNumber}
             onChange={onChange}
           />
-          
+           {phoneError && (
+      <div className="invalid-feedback">{phoneError}</div>
+    )}
         </div>
         <div className="form-group">
           <input
@@ -85,6 +121,9 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
             value={password2}
             onChange={onChange}
           />
+           {passError && (
+      <div className="invalid-feedback">{passError}</div>
+    )}
         </div>
         <input type="submit" className="btn btn-primary" value="Register" />
       </form>

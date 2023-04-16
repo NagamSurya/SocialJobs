@@ -5,6 +5,8 @@ const User = require('../../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config=require('config');
+const checkObjectId = require('../../middleware/checkObjectId');
+
 
 // @route  POST api/users
 // @desc   Test
@@ -69,4 +71,8 @@ router.post('/',
     
     
 }); 
+
+
+
+
 module.exports= router;

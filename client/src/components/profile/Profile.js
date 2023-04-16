@@ -7,6 +7,7 @@ import ProfileTop from './ProfileTop';
 import ProfileAbout from './ProfileAbout';
 import ProfileExperience from './ProfileExperience';
 import ProfileEducation from './ProfileEducation';
+import ProfileCertification from './ProfileCertification'
 import ProfileGithub from './ProfileGithub';
 import { getProfileById } from '../../actions/profile';
 
@@ -27,11 +28,21 @@ const Profile = ({ getProfileById, profile: { profile }, auth }) => {
           </Link>
           {auth.isAuthenticated &&
             auth.loading === false &&
-            auth.user._id === profile.user._id && (
+            auth.user._id === profile.user._id ? (
               <Link to="/edit-profile" className="btn btn-dark">
                 Edit Profile
               </Link>
-            )}
+            ): 
+            <button
+                   className="btn btn-light"
+                   onClick={() =>
+                  window.location.href = `mailto:${profile.user.email}`
+            }>
+            Contact
+            </button>
+            
+            }
+            
           <div className="profile-grid my-1">
             <ProfileTop profile={profile} />
             <ProfileAbout profile={profile} />
@@ -64,6 +75,22 @@ const Profile = ({ getProfileById, profile: { profile }, auth }) => {
                 </Fragment>
               ) : (
                 <h4>No education credentials</h4>
+              )}
+            </div>
+
+            <div  className='bg-white p-2'>
+              <h2 className="text-primary">Certification</h2>
+              {profile.certifications.length > 0 ? (
+                <Fragment>
+                  {profile.certifications.map((certification) => (
+                    <ProfileCertification
+                      key={certification._id}
+                      certification={certification}
+                    />
+                  ))}
+                </Fragment>
+              ) : (
+                <h4>No Certifications</h4>
               )}
             </div>
 

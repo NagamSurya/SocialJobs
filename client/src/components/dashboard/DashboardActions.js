@@ -13,6 +13,9 @@ const DashboardActions = () => {
       <Link to='/add-education' className='btn btn-light'>
         <i className='fas fa-graduation-cap text-primary' /> Add Education
       </Link>
+      <Link to='/add-certification' className='btn btn-light'>
+        <i className='fas  fa-certificate text-primary' /> Add Certification
+      </Link>
     </div>
   );
 };

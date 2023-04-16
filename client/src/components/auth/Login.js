@@ -15,9 +15,28 @@ const Login = ({ login, isAuthenticated }) => {
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
+    const [emailError,setEmailError]=useState("");
+    const [passError,setPassError]=useState("");
   const onSubmit = (e) => {
     e.preventDefault();
+    let flag=true;
+    if (!email.includes("@")) {
+      setEmailError("Enter a valid email");
+      flag=false
+    } else {
+      setEmailError("");
+    }
+    if (!password) {
+      setPassError("Without password, how can you login macha!?");
+      flag=false
+    } else {
+      setPassError("");
+    }
+
+    if(flag)
     login(email, password);
+    else
+    {}
   };
 
   if (isAuthenticated) {
@@ -40,6 +59,9 @@ const Login = ({ login, isAuthenticated }) => {
             value={email}
             onChange={onChange}
           />
+          {emailError && (
+      <div className="invalid-feedback">{emailError}</div>
+    )}
         </div>
         <div className="form-group">
           <input
@@ -50,7 +72,11 @@ const Login = ({ login, isAuthenticated }) => {
             onChange={onChange}
             minLength="6"
           />
+          {passError && (
+      <div className="invalid-feedback">{passError}</div>
+    )}
         </div>
+        
         <input type="submit" className="btn btn-primary" value="Login" />
       </form>
       <p className="my-1">

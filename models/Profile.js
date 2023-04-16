@@ -87,6 +87,21 @@ const ProfileSchema = new mongoose.Schema({
       }
     }
   ],
+  certifications: [
+    {
+      certificationName: {
+        type: String,
+        required: true
+      },
+      certificationLink:{
+        type:String
+      },
+      certificationDate: {
+        type: Date,
+        required: true
+      }
+    }
+  ],
   social: {
     youtube: {
       type: String
