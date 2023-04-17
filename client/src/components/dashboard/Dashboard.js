@@ -7,6 +7,7 @@ import Experience from './Experience';
 import Education from './Education';
 import Certification from './Certification';
 import { getCurrentProfile, deleteAccount } from '../../actions/profile';
+import ScrollToTopButton from './ScrollToTopButton';
 
 const Dashboard = ({
   getCurrentProfile,
@@ -24,6 +25,7 @@ const Dashboard = ({
       <p className="lead">
         <i className="fas fa-user" /> Welcome {user && user.name}
       </p>
+      <ScrollToTopButton />
       {profile !== null ? (
         <>
           <DashboardActions />
@@ -63,5 +65,4 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, { getCurrentProfile, deleteAccount })(
   Dashboard
-  
 );
